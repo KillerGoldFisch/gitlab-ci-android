@@ -5,7 +5,7 @@
 # https://git.faked.org/jan/gitlab-ci-android
 #
 
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER Jan Grewe <jan@faked.org>
 
 ENV VERSION_SDK_TOOLS "25.1.7"
@@ -18,17 +18,20 @@ ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -qq update && \
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E1DD270288B4E6030699E45FA1715D88E1DF1F24 && \
+    su -c "echo 'deb http://ppa.launchpad.net/git-core/ppa/ubuntu trusty main' > /etc/apt/sources.list.d/git.list" && \
+    apt-get -qq update && \
     apt-get install -qqy --no-install-recommends \
       curl \
       html2text \
-      openjdk-8-jdk \
+      openjdk-7-jdk \
       libc6-i386 \
       lib32stdc++6 \
       lib32gcc1 \
       lib32ncurses5 \
       lib32z1 \
       unzip \
+      git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
