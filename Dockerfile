@@ -24,7 +24,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E1DD270288
     apt-get install -qqy --no-install-recommends \
       curl \
       html2text \
-      openjdk-7-jdk \
+      openjdk-8-jdk \
       libc6-i386 \
       lib32stdc++6 \
       lib32gcc1 \
